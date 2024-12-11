@@ -477,7 +477,7 @@ int main(int argc, char *argv[]) {
       {"initiator-name", required_argument, NULL, 'i'},
       {"show-luns", no_argument, NULL, 's'},
       {"url", no_argument, NULL, 'U'},
-      {"target-iqn", required_argument, NULL, 'T'}, // Исправлено здесь
+      {"target-iqn", required_argument, NULL, 'T'},
       {0, 0, 0, 0}
   };
 
