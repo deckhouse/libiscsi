@@ -3,7 +3,5 @@ AM_CFLAGS = $(WARN_CFLAGS)
 AM_LDFLAGS = -no-undefined
 LIBS = ../lib/libiscsi.la
 
-bin_PROGRAMS = iscsi-inq iscsi-ls iscsi-swp iscsi-pr iscsi-discard iscsi-md5sum
-if !TARGET_OS_IS_WIN32
-bin_PROGRAMS += iscsi-perf iscsi-readcapacity16
-endif
+bin_PROGRAMS = iscsi-ls
+
