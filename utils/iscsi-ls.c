@@ -398,8 +398,10 @@ void discovery_cb(struct iscsi_context *iscsi, int status, void *command_data, v
     }
     printf("\n]\n");
 
-    iscsi_logout_sync(iscsi);
-    iscsi_destroy_context(iscsi);
+    if (iscsi_logout_async(iscsi, discoverylogout_cb, private_data) != 0) {
+        fprintf(stderr, "Failed to logout from target: %s\n", iscsi_get_error(iscsi));
+        return;
+    }
 }
 
 void discoverylogin_cb(struct iscsi_context *iscsi, int status,
