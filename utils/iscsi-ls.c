@@ -397,6 +397,7 @@ void discovery_cb(struct iscsi_context *iscsi, int status, void *command_data, v
         printf("  }");
     }
     printf("\n]\n");
+    exit(0)
 
     if (iscsi_logout_async(iscsi, discoverylogout_cb, private_data) != 0) {
         fprintf(stderr, "Failed to logout from target: %s\n", iscsi_get_error(iscsi));
