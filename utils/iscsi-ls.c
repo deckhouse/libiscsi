@@ -119,7 +119,7 @@ void print_lun_info(int indent_level, const char *format, ...) {
     va_end(args);
 }
 
-int show_lun(struct iscsi_context *iscsi, int lun) {
+void show_lun(struct iscsi_context *iscsi, int lun) {
     struct scsi_task *task;
     struct scsi_inquiry_standard *inq;
     int type;
@@ -254,17 +254,15 @@ int show_lun(struct iscsi_context *iscsi, int lun) {
         print_lun_info(10, "\"WWID\": \"%s\",\n", designator_text);
         print_lun_info(10, "\"Size\": %lld\n", size);
         print_lun_info(8, "}");
-	return 0;
     }
 
-    return -1;
+    return;
 
 output_error:
     print_lun_info(8, "{\n");
     print_lun_info(10, "\"LUN\": %d,\n", lun);
     print_lun_info(10, "\"Errors\": \"%s\"\n", error_message);
     print_lun_info(8, "}");
-    return 0;
 }
 
 void list_luns(struct client_state *clnt, const char *target,
@@ -315,13 +313,11 @@ void list_luns(struct client_state *clnt, const char *target,
     exit(10);
   }
 
-  int j = 1;
   for (i = 0; i < (int)list->num; i++) {
-    if (show_lun(iscsi, list->luns[i]) == 0) {
-        if (!j) {
-                printf(",\n");
-        }
+    if (i > 0) {
+      printf(",\n");
     }
+    show_lun(iscsi, list->luns[i]);
   }
 
   scsi_free_scsi_task(task);
