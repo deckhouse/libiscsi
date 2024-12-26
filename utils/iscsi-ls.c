@@ -248,13 +248,13 @@ void show_lun(struct iscsi_context *iscsi, int lun) {
         scsi_free_scsi_task(task);
     }
 
-    if (type == SCSI_INQUIRY_PERIPHERAL_DEVICE_TYPE_DIRECT_ACCESS) {
-        print_lun_info(8, "{\n");
-        print_lun_info(10, "\"LUN\": %d,\n", lun);
-        print_lun_info(10, "\"WWID\": \"%s\",\n", designator_text);
-        print_lun_info(10, "\"Size\": %lld\n", size);
-        print_lun_info(8, "}");
-    }
+    //if (type == SCSI_INQUIRY_PERIPHERAL_DEVICE_TYPE_DIRECT_ACCESS) {
+    print_lun_info(8, "{\n");
+    print_lun_info(10, "\"LUN\": %d,\n", lun);
+    print_lun_info(10, "\"WWID\": \"%s\",\n", designator_text);
+    print_lun_info(10, "\"Size\": %lld\n", size);
+    print_lun_info(8, "}");
+    //}
 
     return;
 
